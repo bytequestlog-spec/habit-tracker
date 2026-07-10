@@ -2,10 +2,13 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  max-width: 480;
+  left: 50%;
+  transform: translateX(-50%);
   background-color: var(--bg-secondary);
   border-top: 1px solid var(--border);
-  justify-content: space-around;
   display: flex;
+  justify-content: space-around;
   padding: 10px;
 }
 
@@ -13,7 +16,7 @@
   align-items: center;
   padding: 10px;
   border-radius: 50px;
-  background-color: var(--border);
+  background-color: var(--bg-tertiary);
   color: var(--text-secondary);
   border: none;
   cursor: pointer;
@@ -22,7 +25,7 @@
 .nav-tab.active {
   justify-content: flex;
   border-radius: 50px;
-  background-color: purple;
-  color: var(--accent);
+  background-color: var(--accent);
+  color: var(--text-primary);
   border: none;
 }

@@ -36,20 +36,8 @@ function App() {
           if (diff > 50) setCurrentPage("manage");
           if (diff < -50) setCurrentPage("home");
         }}
-        onMouseDown={(e) => {
-          touchStartX.current = e.clientX;
-          isDragging.current = true;
-        }}
         onMouseMove={(e) => {
           if (!isDragging.current) return;
-        }}
-        onMouseUp={(e) => {
-          if (!isDragging.current) return;
-          isDragging.current = false;
-          const diff = touchStartX.current - e.clientX;
-          if (Math.abs(diff) < 10) return;
-          if (diff > 50) setCurrentPage("manage");
-          if (diff < -50) setCurrentPage("home");
         }}
         onMouseLeave={() => {
           isDragging.current = false;

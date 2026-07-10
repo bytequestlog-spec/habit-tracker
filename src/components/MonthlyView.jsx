@@ -17,50 +17,53 @@ function MonthlyView({ habits, setHabits }) {
   });
 
   return (
-    <table className="table">
-      <thead>
-        <tr>
-          <th></th>
-          {days.map((day) => (
-            <th key={day}>{day}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {visibleHabits.map((habit, index) => (
-          <tr key={index}>
-            <td>{habit.name}</td>
-            {days.map((day) => {
-              const dateString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-              return (
-                <td
-                  key={day}
-                  onClick={() => {
-                    const updatedHabit = {
-                      ...habit,
-                      completedDates: {
-                        ...habit.completedDates,
-                        [dateString]: !habit.completedDates[dateString],
-                      },
-                    };
-                    const withStreak = {
-                      ...updatedHabit,
-                      streak: recalculateStreak(updatedHabit, dateString),
-                    };
-                    const updatedHabits = habits.map((h) =>
-                      h === habit ? withStreak : h,
-                    );
-                    setHabits(updatedHabits);
-                  }}
-                >
-                  {habit.completedDates[dateString] ? "✅" : ""}
-                </td>
-              );
-            })}
+    <div className="table">
+      {" "}
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            {days.map((day) => (
+              <th key={day}>{day}</th>
+            ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {visibleHabits.map((habit, index) => (
+            <tr key={index}>
+              <td>{habit.name}</td>
+              {days.map((day) => {
+                const dateString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+                return (
+                  <td
+                    key={day}
+                    onClick={() => {
+                      const updatedHabit = {
+                        ...habit,
+                        completedDates: {
+                          ...habit.completedDates,
+                          [dateString]: !habit.completedDates[dateString],
+                        },
+                      };
+                      const withStreak = {
+                        ...updatedHabit,
+                        streak: recalculateStreak(updatedHabit, dateString),
+                      };
+                      const updatedHabits = habits.map((h) =>
+                        h === habit ? withStreak : h,
+                      );
+                      setHabits(updatedHabits);
+                    }}
+                  >
+                    {habit.completedDates[dateString] ? "✅" : ""}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

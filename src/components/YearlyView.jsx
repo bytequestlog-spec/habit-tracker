@@ -27,7 +27,7 @@ function YearlyView({ habits }) {
     weeks.push(days.slice(i, i + 7));
   }
   return (
-    <div style={{ display: "flex", gap: "2px", padding: "10px" }}>
+    <div className="yearly-container">
       {weeks.map((week, wi) => (
         <div
           key={wi}

@@ -33,16 +33,18 @@ function ManagePage({ habits, setHabits }) {
     <div>
       <div id="manage-list">
         {habits.map((habit, index) => (
-          <div key={index}>
+          <div key={index} className="habit-card">
             <div>
               {editingIndex === index ? (
-                <div>
+                <div className="add-form">
                   <input
+                    className="form-inputs"
                     value={editName}
                     onChange={(e) => setEditName(e.target.value)}
                   />
                   start date:
                   <input
+                    className="form-inputs"
                     type="date"
                     value={editStartDate}
                     onChange={(e) => {
@@ -51,29 +53,34 @@ function ManagePage({ habits, setHabits }) {
                   />
                   end date:
                   <input
+                    className="form-inputs"
                     type="date"
                     value={editEndDate}
                     onChange={(e) => {
                       setEditEndDate(e.target.value);
                     }}
                   />
-                  {days.map((item, i) => (
-                    <label key={i}>
-                      <input
-                        type="checkbox"
-                        value={item}
-                        checked={editDays.includes(item)}
-                        onChange={(e) => {
-                          if (e.target.checked) {
-                            setEditDays([...editDays, item]);
-                          } else {
-                            setEditDays(editDays.filter((day) => day !== item));
-                          }
-                        }}
-                      />
-                      {item}
-                    </label>
-                  ))}
+                  <div className="days-container">
+                    {days.map((item, i) => (
+                      <label key={i} className="day-label">
+                        <input
+                          type="checkbox"
+                          value={item}
+                          checked={editDays.includes(item)}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setEditDays([...editDays, item]);
+                            } else {
+                              setEditDays(
+                                editDays.filter((day) => day !== item),
+                              );
+                            }
+                          }}
+                        />
+                        {item}
+                      </label>
+                    ))}
+                  </div>
                   <button onClick={() => setEditingIndex(null)}>Cancel</button>
                   <button
                     onClick={() => {
@@ -105,6 +112,7 @@ function ManagePage({ habits, setHabits }) {
                     onClick={() => {
                       setHabits(habits.filter((_, i) => i !== index));
                     }}
+                    className="remove-btn"
                   >
                     remove
                   </button>
@@ -116,6 +124,7 @@ function ManagePage({ habits, setHabits }) {
                       setEditEndDate(habit.endDate);
                       setEditDays(habit.days);
                     }}
+                    className="edit-btn"
                   >
                     edit
                   </button>
@@ -126,9 +135,10 @@ function ManagePage({ habits, setHabits }) {
         ))}
       </div>
       {/* add habits form*/}
-      <div className="form-inputs">
+      <div className="add-form">
         {" "}
         <input
+          className="form-inputs"
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
@@ -136,33 +146,37 @@ function ManagePage({ habits, setHabits }) {
         />
         start date:{" "}
         <input
+          className="form-inputs"
           type="date"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
         ></input>
         end date:{" "}
         <input
+          className="form-inputs"
           type="date"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
         ></input>
-        {days.map((item, index) => (
-          <label key={index}>
-            <input
-              type="checkbox"
-              value={item}
-              checked={selectedDays.includes(item)}
-              onChange={(e) => {
-                if (e.target.checked) {
-                  setSelectedDays([...selectedDays, item]);
-                } else {
-                  setSelectedDays(selectedDays.filter((day) => day !== item));
-                }
-              }}
-            />
-            {item}
-          </label>
-        ))}
+        <div className="days-container">
+          {days.map((item, index) => (
+            <label key={index} className="day-label">
+              <input
+                type="checkbox"
+                value={item}
+                checked={selectedDays.includes(item)}
+                onChange={(e) => {
+                  if (e.target.checked) {
+                    setSelectedDays([...selectedDays, item]);
+                  } else {
+                    setSelectedDays(selectedDays.filter((day) => day !== item));
+                  }
+                }}
+              />
+              {item}
+            </label>
+          ))}
+        </div>
       </div>
       <button onClick={addHabit} className="add-btn">
         Add Habit

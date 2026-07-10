@@ -1,4 +1,4 @@
-/*:root {
+:root {
   --bg-primary: #0f0f0f;
   --bg-secondary: #1a1a1a;
   --bg-tertiary: #252525;
@@ -22,4 +22,4 @@ body {
   color: var(--text-primary);
   font-family: "Inter", sans-serif;
   min-height: 100vh;
-}*/
+}

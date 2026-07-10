@@ -1,0 +1,7 @@
+.yearly-container {
+  overflow-x: auto;
+  max-width: 100%;
+  display: flex;
+  gap: 2px;
+  padding: 10px;
+}
