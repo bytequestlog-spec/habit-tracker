@@ -1,0 +1,25 @@
+/*:root {
+  --bg-primary: #0f0f0f;
+  --bg-secondary: #1a1a1a;
+  --bg-tertiary: #252525;
+  --accent: #6c63ff;
+  --accent-hover: #5a52d5;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --border: #2e2e2e;
+  --success: #4ade80;
+  --danger: #f87171;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: "Inter", sans-serif;
+  min-height: 100vh;
+}*/

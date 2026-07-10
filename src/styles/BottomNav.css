@@ -1,0 +1,27 @@
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  justify-content: space-around;
+  display: flex;
+  padding: 10px;
+}
+
+.page-btn {
+  padding: 10px;
+  border-radius: 50px;
+  background-color: var(--border);
+  color: var(--text-secondary);
+  border: none;
+  cursor: pointer;
+}
+
+.page-btn.active {
+  justify-content: flex;
+  border-radius: 50px;
+  background-color: purple;
+  color: var(--text-primary);
+  border: none;
+}

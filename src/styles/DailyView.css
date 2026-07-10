@@ -1,0 +1,19 @@
+.habit-row {
+  background-color: var(--bg-secondary);
+  padding: 12px;
+  border-radius: 40px;
+  padding: 15px;
+  flex-direction: row;
+}
+
+.remove-btn {
+  background-color: rgb(129, 22, 22);
+  border: none;
+  border-radius: 30px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background-color: rgb(223, 33, 33);
+}
