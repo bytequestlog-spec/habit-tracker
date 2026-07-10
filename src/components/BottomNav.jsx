@@ -2,21 +2,22 @@ import { useState } from "react";
 
 function BottomNav({ currentPage, setCurrentPage }) {
   return (
-    <div className="bottom-nav">
+    <nav className="bottom-nav">
       <button
         onClick={() => setCurrentPage("home")}
-        className={currentPage === "home" ? "page-btn active" : "page-btn"}
+        className={currentPage === "home" ? "nav-tab active" : "nav-tab"}
       >
-        {" "}
-        🏠Home
+        <span className="nav-icon">🏠</span>
+        <span className="nav-label">Home</span>
       </button>
       <button
         onClick={() => setCurrentPage("manage")}
-        className={currentPage === "manage" ? "page-btn active" : "page-btn"}
+        className={currentPage === "manage" ? "nav-tab active" : "nav-tab"}
       >
-        ⚙️Manage
+        <span className="nav-icon">⚙️</span>
+        <span className="nav-label">Manage</span>
       </button>
-    </div>
+    </nav>
   );
 }
 

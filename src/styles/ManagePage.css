@@ -5,4 +5,7 @@
 
 .add-btn {
   background-color: var(--accent);
+  border: none;
+  border-radius: 15px;
+  padding: 10px 15px;
 }

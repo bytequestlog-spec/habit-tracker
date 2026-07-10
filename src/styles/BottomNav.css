@@ -9,7 +9,8 @@
   padding: 10px;
 }
 
-.page-btn {
+.nav-tab {
+  align-items: center;
   padding: 10px;
   border-radius: 50px;
   background-color: var(--border);
@@ -18,10 +19,10 @@
   cursor: pointer;
 }
 
-.page-btn.active {
+.nav-tab.active {
   justify-content: flex;
   border-radius: 50px;
   background-color: purple;
-  color: var(--text-primary);
+  color: var(--accent);
   border: none;
 }
