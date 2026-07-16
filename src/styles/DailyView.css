@@ -1,11 +1,31 @@
 .habit-row {
   background-color: var(--bg-secondary);
-  padding: 12px;
-  border-radius: 40px;
-  padding: 15px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   flex-direction: row;
 }
 
+.habit-name {
+  font-size: 16px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.habit-action {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.streak {
+  color: var(--success);
+  font-size: 14px;
+}
 .remove-btn {
   background-color: rgb(129, 22, 22);
   border: none;

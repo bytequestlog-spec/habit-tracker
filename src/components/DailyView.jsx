@@ -18,38 +18,42 @@ function DailyView({ habits, setHabits }) {
       {visibleHabits.length === 0 && <p>No habits scheduled for today!</p>}
       {visibleHabits.map((habit, index) => (
         <div key={index}>
-          <span>{habit.name}</span>
-          <input
-            type="checkbox"
-            checked={habit.completedDates[todayString] === true}
-            onChange={(e) => {
-              const updatedHabit = {
-                ...habit,
-                completedDates: {
-                  ...habit.completedDates,
-                  [todayString]: e.target.checked,
-                },
-              };
+          <span className="habit-name">{habit.name}</span>
+          <div className="habit-action">
+            <span className="streak">{habit.streak}🔥</span>
+            <input
+              type="checkbox"
+              checked={habit.completedDates[todayString] === true}
+              className="habit-checkbox"
+              onChange={(e) => {
+                const updatedHabit = {
+                  ...habit,
+                  completedDates: {
+                    ...habit.completedDates,
+                    [todayString]: e.target.checked,
+                  },
+                };
 
-              const withStreak = {
-                ...updatedHabit,
-                streak: recalculateStreak(updatedHabit, todayString),
-              };
+                const withStreak = {
+                  ...updatedHabit,
+                  streak: recalculateStreak(updatedHabit, todayString),
+                };
 
-              const updatedHabits = habits.map((h) =>
-                h === habit ? withStreak : h,
-              );
+                const updatedHabits = habits.map((h) =>
+                  h === habit ? withStreak : h,
+                );
 
-              setHabits(updatedHabits);
-            }}
-          ></input>
-          <span>{habit.streak}🔥</span>
-          <button
-            onClick={() => setHabits(habits.filter((h) => h !== habit))}
-            className="remove-btn"
-          >
-            remove
-          </button>
+                setHabits(updatedHabits);
+              }}
+            ></input>
+
+            <button
+              onClick={() => setHabits(habits.filter((h) => h !== habit))}
+              className="remove-btn"
+            >
+              remove
+            </button>
+          </div>
         </div>
       ))}
     </div>
