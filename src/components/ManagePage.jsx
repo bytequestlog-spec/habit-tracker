@@ -104,30 +104,32 @@ function ManagePage({ habits, setHabits }) {
                 </div>
               ) : (
                 <div>
-                  <span>
+                  <span className="habit-info">
                     {habit.name} | {habit.days.join(", ")}| {habit.startDate} -{" "}
                     {habit.endDate}
                   </span>
-                  <button
-                    onClick={() => {
-                      setHabits(habits.filter((_, i) => i !== index));
-                    }}
-                    className="remove-btn"
-                  >
-                    remove
-                  </button>
-                  <button
-                    onClick={() => {
-                      setEditingIndex(index);
-                      setEditName(habit.name);
-                      setEditStartDate(habit.startDate);
-                      setEditEndDate(habit.endDate);
-                      setEditDays(habit.days);
-                    }}
-                    className="edit-btn"
-                  >
-                    edit
-                  </button>
+                  <div className="habit-card-action">
+                    <button
+                      onClick={() => {
+                        setHabits(habits.filter((_, i) => i !== index));
+                      }}
+                      className="remove-btn"
+                    >
+                      remove
+                    </button>
+                    <button
+                      onClick={() => {
+                        setEditingIndex(index);
+                        setEditName(habit.name);
+                        setEditStartDate(habit.startDate);
+                        setEditEndDate(habit.endDate);
+                        setEditDays(habit.days);
+                      }}
+                      className="edit-btn"
+                    >
+                      edit
+                    </button>
+                  </div>
                 </div>
               )}
             </div>

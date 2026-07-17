@@ -37,3 +37,10 @@
 .remove-btn:hover {
   background-color: rgb(223, 33, 33);
 }
+
+.empty-message {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 40px;
+  font-size: 14px;
+}

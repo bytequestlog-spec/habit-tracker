@@ -15,7 +15,9 @@ function DailyView({ habits, setHabits }) {
 
   return (
     <div className="habit-row">
-      {visibleHabits.length === 0 && <p>No habits scheduled for today!</p>}
+      {visibleHabits.length === 0 && (
+        <p className="empty-message">No habits scheduled for today!</p>
+      )}
       {visibleHabits.map((habit, index) => (
         <div key={index}>
           <span className="habit-name">{habit.name}</span>

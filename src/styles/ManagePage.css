@@ -47,6 +47,19 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
+}
+
+.habit-info {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text-primary);
+}
+
+.habit-card-action {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
 }
 
 .remove-btn {
