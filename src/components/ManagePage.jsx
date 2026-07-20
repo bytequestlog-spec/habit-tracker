@@ -34,105 +34,102 @@ function ManagePage({ habits, setHabits }) {
       <div id="manage-list">
         {habits.map((habit, index) => (
           <div key={index} className="habit-card">
-            <div>
-              {editingIndex === index ? (
-                <div className="add-form">
-                  <input
-                    className="form-inputs"
-                    value={editName}
-                    onChange={(e) => setEditName(e.target.value)}
-                  />
-                  start date:
-                  <input
-                    className="form-inputs"
-                    type="date"
-                    value={editStartDate}
-                    onChange={(e) => {
-                      setEditStartDate(e.target.value);
-                    }}
-                  />
-                  end date:
-                  <input
-                    className="form-inputs"
-                    type="date"
-                    value={editEndDate}
-                    onChange={(e) => {
-                      setEditEndDate(e.target.value);
-                    }}
-                  />
-                  <div className="days-container">
-                    {days.map((item, i) => (
-                      <label key={i} className="day-label">
-                        <input
-                          type="checkbox"
-                          value={item}
-                          checked={editDays.includes(item)}
-                          onChange={(e) => {
-                            if (e.target.checked) {
-                              setEditDays([...editDays, item]);
-                            } else {
-                              setEditDays(
-                                editDays.filter((day) => day !== item),
-                              );
-                            }
-                          }}
-                        />
-                        {item}
-                      </label>
-                    ))}
-                  </div>
-                  <button onClick={() => setEditingIndex(null)}>Cancel</button>
+            {editingIndex === index ? (
+              <div className="add-form">
+                <input
+                  className="form-inputs"
+                  value={editName}
+                  onChange={(e) => setEditName(e.target.value)}
+                />
+                <label className="form-label">start date:</label>
+                <input
+                  className="form-inputs"
+                  type="date"
+                  value={editStartDate}
+                  onChange={(e) => {
+                    setEditStartDate(e.target.value);
+                  }}
+                />
+                <label className="form-label">end date:</label>
+
+                <input
+                  className="form-inputs"
+                  type="date"
+                  value={editEndDate}
+                  onChange={(e) => {
+                    setEditEndDate(e.target.value);
+                  }}
+                />
+                <div className="days-container">
+                  {days.map((item, i) => (
+                    <label key={i} className="day-label">
+                      <input
+                        type="checkbox"
+                        value={item}
+                        checked={editDays.includes(item)}
+                        onChange={(e) => {
+                          if (e.target.checked) {
+                            setEditDays([...editDays, item]);
+                          } else {
+                            setEditDays(editDays.filter((day) => day !== item));
+                          }
+                        }}
+                      />
+                      {item}
+                    </label>
+                  ))}
+                </div>
+                <button onClick={() => setEditingIndex(null)}>Cancel</button>
+                <button
+                  onClick={() => {
+                    const updatedHabits = habits.map((h, i) =>
+                      i === editingIndex
+                        ? {
+                            ...h,
+                            name: editName,
+                            startDate: editStartDate,
+                            endDate: editEndDate,
+                            days: editDays,
+                          }
+                        : h,
+                    );
+                    setHabits(updatedHabits);
+                    setEditingIndex(null);
+                  }}
+                >
+                  Save
+                </button>
+              </div>
+            ) : (
+              <div>
+                <span className="habit-info">
+                  {habit.name} | {habit.days.join(", ")}| {habit.startDate} -{" "}
+                  {habit.endDate}
+                </span>
+                <div className="habit-card-action">
                   <button
                     onClick={() => {
-                      const updatedHabits = habits.map((h, i) =>
-                        i === editingIndex
-                          ? {
-                              ...h,
-                              name: editName,
-                              startDate: editStartDate,
-                              endDate: editEndDate,
-                              days: editDays,
-                            }
-                          : h,
-                      );
-                      setHabits(updatedHabits);
-                      setEditingIndex(null);
+                      setHabits(habits.filter((_, i) => i !== index));
                     }}
+                    className="remove-btn"
                   >
-                    Save
+                    remove
+                  </button>
+                  <button
+                    onClick={() => {
+                      setEditingIndex(index);
+                      setEditName(habit.name);
+                      setEditStartDate(habit.startDate);
+                      setEditEndDate(habit.endDate);
+                      setEditDays(habit.days);
+                    }}
+                    className="edit-btn"
+                  >
+                    edit
                   </button>
                 </div>
-              ) : (
-                <div>
-                  <span className="habit-info">
-                    {habit.name} | {habit.days.join(", ")}| {habit.startDate} -{" "}
-                    {habit.endDate}
-                  </span>
-                  <div className="habit-card-action">
-                    <button
-                      onClick={() => {
-                        setHabits(habits.filter((_, i) => i !== index));
-                      }}
-                      className="remove-btn"
-                    >
-                      remove
-                    </button>
-                    <button
-                      onClick={() => {
-                        setEditingIndex(index);
-                        setEditName(habit.name);
-                        setEditStartDate(habit.startDate);
-                        setEditEndDate(habit.endDate);
-                        setEditDays(habit.days);
-                      }}
-                      className="edit-btn"
-                    >
-                      edit
-                    </button>
-                  </div>
-                </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         ))}
       </div>

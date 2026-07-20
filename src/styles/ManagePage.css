@@ -19,6 +19,12 @@
   border-color: var(--accent);
 }
 
+.form-label {
+  color: var(--border);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
 .add-btn {
   background-color: var(--accent);
   color: var(--text-primary);
