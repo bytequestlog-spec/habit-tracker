@@ -14,12 +14,12 @@ function DailyView({ habits, setHabits }) {
   });
 
   return (
-    <div className="habit-row">
+    <div>
       {visibleHabits.length === 0 && (
         <p className="empty-message">No habits scheduled for today!</p>
       )}
       {visibleHabits.map((habit, index) => (
-        <div key={index}>
+        <div key={index} className="habit-row">
           <span className="habit-name">{habit.name}</span>
           <div className="habit-action">
             <span className="streak">{habit.streak}🔥</span>

@@ -20,7 +20,7 @@
 }
 
 .form-label {
-  color: var(--border);
+  color: var(--text-primary);
   font-size: 12px;
   margin-top: 4px;
 }

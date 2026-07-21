@@ -101,7 +101,7 @@ function ManagePage({ habits, setHabits }) {
                 </button>
               </div>
             ) : (
-              <div>
+              <>
                 <span className="habit-info">
                   {habit.name} | {habit.days.join(", ")}| {habit.startDate} -{" "}
                   {habit.endDate}
@@ -128,7 +128,7 @@ function ManagePage({ habits, setHabits }) {
                     edit
                   </button>
                 </div>
-              </div>
+              </>
             )}
           </div>
         ))}
@@ -143,14 +143,14 @@ function ManagePage({ habits, setHabits }) {
           onChange={(e) => setName(e.target.value)}
           placeholder="enter the habit name"
         />
-        start date:{" "}
+        <label className="form-label">start date: </label>
         <input
           className="form-inputs"
           type="date"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
         ></input>
-        end date:{" "}
+        <label className="form-label">end date: </label>
         <input
           className="form-inputs"
           type="date"
