@@ -17,9 +17,9 @@ function MonthlyView({ habits, setHabits }) {
   });
 
   return (
-    <div className="table">
+    <div className="monthly-container">
       {" "}
-      <table>
+      <table className="monthly-table">
         <thead>
           <tr>
             <th></th>
@@ -37,6 +37,11 @@ function MonthlyView({ habits, setHabits }) {
                 return (
                   <td
                     key={day}
+                    style={{
+                      backgroundColor: habit.completedDates[dateString]
+                        ? "var(--success)"
+                        : "",
+                    }}
                     onClick={() => {
                       const updatedHabit = {
                         ...habit,
@@ -55,7 +60,7 @@ function MonthlyView({ habits, setHabits }) {
                       setHabits(updatedHabits);
                     }}
                   >
-                    {habit.completedDates[dateString] ? "✅" : ""}
+                    {habit.completedDates[dateString] ? "✓" : ""}
                   </td>
                 );
               })}
