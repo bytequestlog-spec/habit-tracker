@@ -44,3 +44,34 @@
   padding: 40px;
   font-size: 14px;
 }
+
+.habit-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.habit-checkbox:checked {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.habit-checkbox:checked::after {
+  content: "✓";
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.habit-checkbox:hover {
+  border-color: var(--accent);
+}

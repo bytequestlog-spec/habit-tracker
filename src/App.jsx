@@ -34,6 +34,12 @@ function App() {
 
   return (
     <div className="app">
+      <header className="app-header">
+        <h1 className="app-title">🌱 Habit Tracker</h1>
+        <button onClick={() => setDarkMode(!darkMode)} className="theme-toggle">
+          {darkMode ? "☀️" : "🌙"}
+        </button>
+      </header>
       <div
         className={`pages-container ${currentPage === "manage" ? "on-manage" : ""}`}
         onTouchStart={(e) => (touchStartX.current = e.touches[0].clientX)}
@@ -74,9 +80,6 @@ function App() {
               }
             >
               yearly
-            </button>
-            <button onClick={() => setDarkMode(!darkMode)} className="mode-btn">
-              {darkMode ? "☀️" : "🌙"}
             </button>
           </div>
           {habits.length === 0 && (
