@@ -233,3 +233,10 @@
 .pages-container.on-manage {
   transform: translateX(-50%);
 }
+
+.mode-btn {
+  border-radius: 20px;
+  border: none;
+  font-size: 25px;
+  background-color: var(--bg-tertiary);
+}

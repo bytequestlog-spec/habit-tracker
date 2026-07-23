@@ -22,6 +22,12 @@ function App() {
   const touchStartX = useRef(null);
   const isDragging = useRef(false);
 
+  const [darkMode, setDarkMode] = useState(true);
+
+  useEffect(() => {
+    document.body.classList.toggle("light", !darkMode);
+  }, [darkMode]);
+
   useEffect(() => {
     localStorage.setItem("habits", JSON.stringify(habits));
   }, [habits]);
@@ -68,6 +74,9 @@ function App() {
               }
             >
               yearly
+            </button>
+            <button onClick={() => setDarkMode(!darkMode)} className="mode-btn">
+              {darkMode ? "☀️" : "🌙"}
             </button>
           </div>
           {habits.length === 0 && (

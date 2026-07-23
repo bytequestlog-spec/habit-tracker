@@ -40,7 +40,9 @@ function YearlyView({ habits }) {
                 width: 12,
                 height: 12,
                 borderRadius: 2,
-                backgroundColor: completedDates.has(day) ? "green" : "#eee",
+                backgroundColor: completedDates.has(day)
+                  ? "green"
+                  : "var(--bg-tertiary)",
               }}
             />
           ))}
