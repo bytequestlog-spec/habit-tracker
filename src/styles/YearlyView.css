@@ -5,3 +5,16 @@
   gap: 2px;
   padding: 10px;
 }
+
+.yearly-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.yearly-container::-webkit-scrollbar-track {
+  background-color: var(--bg-primary);
+}
+
+.yearly-container::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 4px;
+}

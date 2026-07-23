@@ -37,3 +37,22 @@
 .monthly-table td:hover:not(:first-child) {
   background-color: var(--bg-tertiary);
 }
+
+.monthly-table th:first-child {
+  position: sticky;
+  left: 0;
+  background-color: var(--bg-primary);
+}
+
+.monthly-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.monthly-container::-webkit-scrollbar-track {
+  background-color: var(--bg-primary);
+}
+
+.monthly-container::-webkit-scrollbar-thumb {
+  background-color: var(--border);
+  border-radius: 4px;
+}
