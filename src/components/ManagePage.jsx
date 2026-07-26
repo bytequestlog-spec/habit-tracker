@@ -12,6 +12,14 @@ function ManagePage({ habits, setHabits }) {
   const [editEndDate, setEditEndDate] = useState("");
   const [editDays, setEditDays] = useState([]);
 
+  function toggleDay(day, currentDays, setDaysState) {
+    if (currentDays.includes(day)) {
+      setDaysState(currentDays.filter((d) => d !== day));
+    } else {
+      setDaysState([...currentDays, day]);
+    }
+  }
+
   function addHabit() {
     if (name.trim() === "") return;
     const newHabit = {
@@ -30,37 +38,51 @@ function ManagePage({ habits, setHabits }) {
     setSelectedDays([]);
   }
   return (
-    <div>
+    <div className="manage-page-container">
       <div id="manage-list">
-        {habits.map((habit, index) => (
-          <div key={index} className="habit-card">
-            {editingIndex === index ? (
-              <div className="add-form">
-                <input
-                  className="form-inputs"
-                  value={editName}
-                  onChange={(e) => setEditName(e.target.value)}
-                />
-                <label className="form-label">start date:</label>
-                <input
-                  className="form-inputs"
-                  type="date"
-                  value={editStartDate}
-                  onChange={(e) => {
-                    setEditStartDate(e.target.value);
-                  }}
-                />
-                <label className="form-label">end date:</label>
+        {habits.map((habit, index) =>
+          editingIndex === index ? (
+            <div key={index} className="add-form edit-form-card">
+              <input
+                className="form-inputs"
+                value={editName}
+                onChange={(e) => setEditName(e.target.value)}
+                placeholder="Habit Name"
+              />
+              <label className="form-label">Start Date:</label>
+              <input
+                className="form-inputs"
+                type="date"
+                value={editStartDate}
+                onChange={(e) => setEditStartDate(e.target.value)}
+              />
+              <label className="form-label">End Date:</label>
+              <input
+                className="form-inputs"
+                type="date"
+                value={editEndDate}
+                onChange={(e) => setEditEndDate(e.target.value)}
+              />
+              {/*Day Pills selection*/}
+              <label className="form-label">Repeat Days:</label>
+              <div className="days-pills-container">
+                {days.map((item) => {
+                  const active = editDays.includes(item);
+                  return (
+                    <button
+                      type="button"
+                      key={item}
+                      className={`day-pill ${active ? "active" : ""}`}
+                      onClick={() => toggleDay(item, editDays, setEditDays)}
+                    >
+                      {item}
+                    </button>
+                  );
+                })}
+              </div>
 
-                <input
-                  className="form-inputs"
-                  type="date"
-                  value={editEndDate}
-                  onChange={(e) => {
-                    setEditEndDate(e.target.value);
-                  }}
-                />
-                <div className="days-container">
+              {/*
+                 <div className="days-container">
                   {days.map((item, i) => (
                     <label key={i} className="day-label">
                       <input
@@ -79,8 +101,18 @@ function ManagePage({ habits, setHabits }) {
                     </label>
                   ))}
                 </div>
-                <button onClick={() => setEditingIndex(null)}>Cancel</button>
+                */}
+              <div className="form-actions">
                 <button
+                  type="button"
+                  className="cancel-btn"
+                  onClick={() => setEditingIndex(null)}
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  className="save-btn"
                   onClick={() => {
                     const updatedHabits = habits.map((h, i) =>
                       i === editingIndex
@@ -100,42 +132,48 @@ function ManagePage({ habits, setHabits }) {
                   Save
                 </button>
               </div>
-            ) : (
-              <>
-                <span className="habit-info">
-                  {habit.name} | {habit.days.join(", ")}| {habit.startDate} -{" "}
+            </div>
+          ) : (
+            <div key={index} className="habit-card">
+              <div className="habit-info">
+                <span className="habit-title">{habit.name} </span>
+                <span className="habit-meta">
+                  {habit.days.join(", ").toUpperCase()}| {habit.startDate} to{" "}
                   {habit.endDate}
                 </span>
-                <div className="habit-card-action">
-                  <button
-                    onClick={() => {
-                      setHabits(habits.filter((_, i) => i !== index));
-                    }}
-                    className="remove-btn"
-                  >
-                    remove
-                  </button>
-                  <button
-                    onClick={() => {
-                      setEditingIndex(index);
-                      setEditName(habit.name);
-                      setEditStartDate(habit.startDate);
-                      setEditEndDate(habit.endDate);
-                      setEditDays(habit.days);
-                    }}
-                    className="edit-btn"
-                  >
-                    edit
-                  </button>
-                </div>
-              </>
-            )}
-          </div>
-        ))}
+              </div>
+
+              <div className="habit-card-action">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setEditingIndex(index);
+                    setEditName(habit.name);
+                    setEditStartDate(habit.startDate);
+                    setEditEndDate(habit.endDate);
+                    setEditDays(habit.days || []);
+                  }}
+                  className="edit-btn"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setHabits(habits.filter((_, i) => i !== index))
+                  }
+                  className="remove-btn"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+          ),
+        )}
       </div>
+
       {/* add habits form*/}
       <div className="add-form">
-        {" "}
         <input
           className="form-inputs"
           type="text"
@@ -143,21 +181,41 @@ function ManagePage({ habits, setHabits }) {
           onChange={(e) => setName(e.target.value)}
           placeholder="enter the habit name"
         />
-        <label className="form-label">start date: </label>
+        <label className="form-label">Start Date: </label>
         <input
           className="form-inputs"
           type="date"
           value={startDate}
           onChange={(e) => setStartDate(e.target.value)}
         ></input>
-        <label className="form-label">end date: </label>
+        <label className="form-label">End Date:</label>
         <input
           className="form-inputs"
           type="date"
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
-        ></input>
-        <div className="days-container">
+        />
+
+        {/* Day pills selection*/}
+        <label className="form-label">Repeat Days:</label>
+        <div className="days-pills-container">
+          {days.map((item) => {
+            const active = selectedDays.includes(item);
+            return (
+              <button
+                type="button"
+                key={item}
+                className={`day-pill ${active ? "active" : ""}`}
+                onClick={() => toggleDay(item, selectedDays, setSelectedDays)}
+              >
+                {item}
+              </button>
+            );
+          })}
+        </div>
+
+        {/*
+          <div className="days-container">
           {days.map((item, index) => (
             <label key={index} className="day-label">
               <input
@@ -176,10 +234,12 @@ function ManagePage({ habits, setHabits }) {
             </label>
           ))}
         </div>
+        */}
+
+        <button type="button" onClick={addHabit} className="add-btn">
+          Add Habit
+        </button>
       </div>
-      <button onClick={addHabit} className="add-btn">
-        Add Habit
-      </button>
     </div>
   );
 }

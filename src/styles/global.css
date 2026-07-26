@@ -8,7 +8,7 @@
   --text-secondary: #a0a0a0;
   --border: #2e2e2e;
   --success: #4ade80;
-  --danger: #f87171;
+  --danger: #670909;
 }
 
 * {
@@ -31,4 +31,5 @@ body.light {
   --text-primary: #111111;
   --text-secondary: #666666;
   --border: #ddd;
+  --danger: #f44f4f;
 }

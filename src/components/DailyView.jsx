@@ -14,7 +14,7 @@ function DailyView({ habits, setHabits }) {
   });
 
   return (
-    <div>
+    <div className="daily-container">
       {visibleHabits.length === 0 && (
         <p className="empty-message">No habits scheduled for today!</p>
       )}
@@ -47,14 +47,16 @@ function DailyView({ habits, setHabits }) {
 
                 setHabits(updatedHabits);
               }}
-            ></input>
+            />
 
-            <button
+            {/* 
+<button
               onClick={() => setHabits(habits.filter((h) => h !== habit))}
               className="remove-btn"
             >
               remove
             </button>
+            */}
           </div>
         </div>
       ))}

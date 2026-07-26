@@ -1,6 +1,8 @@
 .monthly-container {
   overflow-x: auto;
   border-radius: 12px;
+  border: 1px solid var(--border);
+  background-color: var(--bg-secondary);
 }
 
 .monthly-table {
@@ -9,11 +11,19 @@
 }
 
 .monthly-table th {
-  padding: 8px 10px;
+  padding: 10px;
   color: var(--text-secondary);
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
   text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.monthly-table th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background-color: var(--bg-secondary);
 }
 
 .monthly-table td {
@@ -23,6 +33,7 @@
   cursor: pointer;
   font-size: 12px;
   transition: background-color 0.15s ease;
+  color: var(--bg-primary);
 }
 
 .monthly-table td:first-child {
@@ -32,20 +43,16 @@
   background-color: var(--bg-secondary);
   position: stikcy;
   left: 0;
+  z-index: 1;
+  text-transform: capitalize;
 }
 
 .monthly-table td:hover:not(:first-child) {
   background-color: var(--bg-tertiary);
 }
 
-.monthly-table th:first-child {
-  position: sticky;
-  left: 0;
-  background-color: var(--bg-primary);
-}
-
 .monthly-container::-webkit-scrollbar {
-  height: 4px;
+  height: 6px;
 }
 
 .monthly-container::-webkit-scrollbar-track {

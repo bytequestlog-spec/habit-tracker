@@ -193,7 +193,11 @@
 }
 
 .page {
-  padding: 20px;
+  width: 50%;
+  flex-shrink: 0;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  padding-bottom: 20px;
 }
 
 .view-switcher {

@@ -71,7 +71,7 @@ function App() {
                 currentView === "monthly" ? "view-btn active" : "view-btn"
               }
             >
-              monthly
+              Monthly
             </button>
             <button
               onClick={() => setCurrentView("yearly")}
@@ -79,7 +79,7 @@ function App() {
                 currentView === "yearly" ? "view-btn active" : "view-btn"
               }
             >
-              yearly
+              Yearly
             </button>
           </div>
           {habits.length === 0 && (

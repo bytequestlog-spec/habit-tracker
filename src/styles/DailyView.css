@@ -53,13 +53,17 @@
   border-radius: 50%;
   border: 2px solid var(--border);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition:
+    transform 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    background-color 0.2s ease,
+    border-color 0.2s ease;
   position: relative;
 }
 
 .habit-checkbox:checked {
   background-color: var(--accent);
   border-color: var(--accent);
+  transform: scale(1.1);
 }
 
 .habit-checkbox:checked::after {
@@ -74,4 +78,8 @@
 
 .habit-checkbox:hover {
   border-color: var(--accent);
+}
+
+.habit-checkbox:active {
+  transform: scale(0.95);
 }
