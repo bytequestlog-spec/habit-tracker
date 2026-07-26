@@ -30,6 +30,7 @@ body.light {
   --bg-tertiary: #e8e8e8;
   --text-primary: #111111;
   --text-secondary: #666666;
+  --accent: #938dff;
   --border: #ddd;
-  --danger: #f44f4f;
+  --danger: #ff6060;
 }
