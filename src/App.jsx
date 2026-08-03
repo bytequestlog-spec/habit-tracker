@@ -12,9 +12,7 @@ import "./styles/MonthlyView.css";
 import "./styles/YearlyView.css";
 
 function App() {
-  const [habits, setHabits] = useState(
-    JSON.parse(localStorage.getItem("habits")) || [],
-  );
+  const [habits, setHabits] = useState([]);
 
   const [currentView, setCurrentView] = useState("daily");
   const [currentPage, setCurrentPage] = useState("home");
@@ -29,9 +27,10 @@ function App() {
   }, [darkMode]);
 
   useEffect(() => {
-    localStorage.setItem("habits", JSON.stringify(habits));
-  }, [habits]);
-
+    fetch("http://localhost:3000/habits")
+      .then((res) => res.json())
+      .then((data) => setHabits(data));
+  }, []);
   return (
     <div className="app">
       <header className="app-header">

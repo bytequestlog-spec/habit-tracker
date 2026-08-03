@@ -56,7 +56,7 @@
   cursor: pointer;
   font-size: 12px;
   transition: background-color 0.15s ease;
-  color: var(--bg-primary);
+  color: var(--bg-secondary);
 }
 
 .monthly-table td:first-child {
@@ -64,7 +64,7 @@
   font-weight: 500;
   cursor: default;
   background-color: var(--bg-secondary);
-  position: stikcy;
+  position: sticky;
   left: 0;
   z-index: 1;
   text-transform: capitalize;

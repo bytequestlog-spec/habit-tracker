@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 function recalculateStreak(habit, dateString) {
   if (habit.completedDates[dateString]) {
