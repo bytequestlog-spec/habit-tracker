@@ -101,7 +101,26 @@ function MonthlyView({ habits, setHabits }) {
                         const updatedHabits = habits.map((h) =>
                           h === habit ? withStreak : h,
                         );
-                        setHabits(updatedHabits);
+                        fetch(`http://localhost:3000/habits/${habit.id}`, {
+                          method: "PUT",
+                          headers: { "Content-Type": "application/json" },
+                          body: JSON.stringify({
+                            name: withStreak.name,
+                            days: withStreak.days,
+                            start_date: withStreak.start_date,
+                            end_date: withStreak.end_date,
+                            streak: withStreak.streak,
+                            completed_dates: withStreak.completed_dates,
+                          }),
+                        })
+                          .then((res) => res.json)
+                          .then((updatedHabit) => {
+                            setHabits(
+                              habits.map((h) =>
+                                h.id === updatedHabit.id ? updatedHabit : h,
+                              ),
+                            );
+                          });
                       }}
                     >
                       {habit.completed_dates[dateString] ? "✓" : ""}
