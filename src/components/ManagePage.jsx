@@ -38,7 +38,7 @@ function ManagePage({ habits, setHabits }) {
         setName("");
         setStartDate("");
         setEndDate("");
-        selectedDays([]);
+        setSelectedDays([]);
       });
   }
 
@@ -135,7 +135,7 @@ function ManagePage({ habits, setHabits }) {
                       },
                     )
                       .then((res) => res.json())
-                      .then((updatedHabits) => {
+                      .then((updatedHabit) => {
                         setHabits(
                           habits.map((h) =>
                             h.id === updatedHabit.id ? updatedHabit : h,
@@ -154,8 +154,8 @@ function ManagePage({ habits, setHabits }) {
               <div className="habit-info">
                 <span className="habit-title">{habit.name} </span>
                 <span className="habit-meta">
-                  {habit.days.join(", ").toUpperCase()}| {habit.startDate} to{" "}
-                  {habit.endDate}
+                  {habit.days.join(", ").toUpperCase()}| {habit.start_date} to{" "}
+                  {habit.end_date}
                 </span>
               </div>
 
@@ -165,8 +165,8 @@ function ManagePage({ habits, setHabits }) {
                   onClick={() => {
                     setEditingIndex(index);
                     setEditName(habit.name);
-                    setEditStartDate(habit.startDate);
-                    setEditEndDate(habit.endDate);
+                    setEditStartDate(habit.start_date);
+                    setEditEndDate(habit.end_date);
                     setEditDays(habit.days || []);
                   }}
                   className="edit-btn"
