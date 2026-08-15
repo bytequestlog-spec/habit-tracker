@@ -2,19 +2,19 @@ import { useState } from "react";
 
 function YearlyView({ habits }) {
   const today = new Date();
-  const completedDates = new Set(
+  const completed_dates = new Set(
     habits.flatMap((habit) =>
-      Object.keys(habit.completedDates).filter(
-        (date) => habit.completedDates[date],
+      Object.keys(habit.completed_dates).filter(
+        (date) => habit.completed_dates[date],
       ),
     ),
   );
 
   const year = today.getFullYear();
-  const startDate = new Date(year, 0, 1);
+  const start_date = new Date(year, 0, 1);
   const days = [];
   for (
-    let d = new Date(startDate);
+    let d = new Date(start_date);
     d.getFullYear() === year;
     d.setDate(d.getDate() + 1)
   ) {
@@ -40,7 +40,7 @@ function YearlyView({ habits }) {
                 width: 12,
                 height: 12,
                 borderRadius: 2,
-                backgroundColor: completedDates.has(day)
+                backgroundColor: completed_dates.has(day)
                   ? "green"
                   : "var(--bg-tertiary)",
               }}

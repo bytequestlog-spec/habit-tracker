@@ -9,8 +9,8 @@ function MonthlyView({ habits, setHabits }) {
   const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
   const visibleHabits = habits.filter((habit) => {
-    const start = new Date(habit.startDate);
-    const end = new Date(habit.endDate);
+    const start = new Date(habit.start_date);
+    const end = new Date(habit.end_date);
     const viewedDate = new Date(viewYear, viewMonth, 1);
     return start <= new Date(viewYear, viewMonth + 1, 0) && end >= viewedDate;
   });
@@ -82,16 +82,16 @@ function MonthlyView({ habits, setHabits }) {
                     <td
                       key={day}
                       style={{
-                        backgroundColor: habit.completedDates[dateString]
+                        backgroundColor: habit.completed_dates[dateString]
                           ? "var(--success)"
                           : "",
                       }}
                       onClick={() => {
                         const updatedHabit = {
                           ...habit,
-                          completedDates: {
-                            ...habit.completedDates,
-                            [dateString]: !habit.completedDates[dateString],
+                          completed_dates: {
+                            ...habit.completed_dates,
+                            [dateString]: !habit.completed_dates[dateString],
                           },
                         };
                         const withStreak = {
@@ -104,7 +104,7 @@ function MonthlyView({ habits, setHabits }) {
                         setHabits(updatedHabits);
                       }}
                     >
-                      {habit.completedDates[dateString] ? "✓" : ""}
+                      {habit.completed_dates[dateString] ? "✓" : ""}
                     </td>
                   );
                 })}

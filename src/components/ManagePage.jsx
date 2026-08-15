@@ -22,21 +22,26 @@ function ManagePage({ habits, setHabits }) {
 
   function addHabit() {
     if (name.trim() === "") return;
-    const newHabit = {
-      name,
-      completedDates: {},
-      startDate,
-      endDate,
-      days: selectedDays,
-      streak: 0,
-    };
-    setHabits([...habits, newHabit]);
-
-    setName("");
-    setStartDate("");
-    setEndDate("");
-    setSelectedDays([]);
+    fetch("http://localhost:3000/habits", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        days: selectedDays,
+        start_date: startDate,
+        end_date: endDate,
+      }),
+    })
+      .then((res) => res.json())
+      .then((newHabit) => {
+        setHabits([...habits, newHabit]);
+        setName("");
+        setStartDate("");
+        setEndDate("");
+        selectedDays([]);
+      });
   }
+
   return (
     <div className="manage-page-container">
       <div id="manage-list">
@@ -114,19 +119,30 @@ function ManagePage({ habits, setHabits }) {
                   type="button"
                   className="save-btn"
                   onClick={() => {
-                    const updatedHabits = habits.map((h, i) =>
-                      i === editingIndex
-                        ? {
-                            ...h,
-                            name: editName,
-                            startDate: editStartDate,
-                            endDate: editEndDate,
-                            days: editDays,
-                          }
-                        : h,
-                    );
-                    setHabits(updatedHabits);
-                    setEditingIndex(null);
+                    fetch(
+                      `http://localhost:3000/habits/${habits[editingIndex].id}`,
+                      {
+                        method: "PUT",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                          name: editName,
+                          days: editDays,
+                          start_date: editStartDate,
+                          end_date: editEndDate,
+                          streak: habits[editingIndex].streak,
+                          completed_dates: habits[editingIndex].completed_dates,
+                        }),
+                      },
+                    )
+                      .then((res) => res.json())
+                      .then((updatedHabits) => {
+                        setHabits(
+                          habits.map((h) =>
+                            h.id === updatedHabit.id ? updatedHabit : h,
+                          ),
+                        );
+                        setEditingIndex(null);
+                      });
                   }}
                 >
                   Save
@@ -159,9 +175,13 @@ function ManagePage({ habits, setHabits }) {
                 </button>
                 <button
                   type="button"
-                  onClick={() =>
-                    setHabits(habits.filter((_, i) => i !== index))
-                  }
+                  onClick={() => {
+                    fetch(`http://localhost:3000/habits/${habit.id}`, {
+                      method: "DELETE",
+                    }).then(() => {
+                      setHabits(habits.filter((h) => h.id !== habit.id));
+                    });
+                  }}
                   className="remove-btn"
                 >
                   Remove

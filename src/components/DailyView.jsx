@@ -8,8 +8,8 @@ function DailyView({ habits, setHabits }) {
   const todayString = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
 
   const visibleHabits = habits.filter((habit) => {
-    const start = new Date(habit.startDate);
-    const end = new Date(habit.endDate);
+    const start = new Date(habit.start_date);
+    const end = new Date(habit.end_date);
     return today >= start && today <= end && habit.days.includes(todayName);
   });
 
@@ -25,13 +25,13 @@ function DailyView({ habits, setHabits }) {
             <span className="streak">{habit.streak}🔥</span>
             <input
               type="checkbox"
-              checked={habit.completedDates[todayString] === true}
+              checked={habit.completed_dates[todayString] === true}
               className="habit-checkbox"
               onChange={(e) => {
                 const updatedHabit = {
                   ...habit,
-                  completedDates: {
-                    ...habit.completedDates,
+                  completed_dates: {
+                    ...habit.completed_dates,
                     [todayString]: e.target.checked,
                   },
                 };
