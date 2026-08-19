@@ -10,6 +10,7 @@ import "./styles/DailyView.css";
 import "./styles/ManagePage.css";
 import "./styles/MonthlyView.css";
 import "./styles/YearlyView.css";
+import AuthPage from "./components/AuthPage";
 
 function App() {
   const [habits, setHabits] = useState([]);
@@ -22,15 +23,28 @@ function App() {
 
   const [darkMode, setDarkMode] = useState(true);
 
+  const [token, setToken] = useState(localStorage.getItem("token"));
+
+  function handleLogin(newToken) {
+    setToken(newToken);
+  }
+
   useEffect(() => {
     document.body.classList.toggle("light", !darkMode);
   }, [darkMode]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/habits")
+    if (!token) return;
+    fetch("http://localhost:3000/habits", {
+      headers: { Authorization: "Bearer ${token}" },
+    })
       .then((res) => res.json())
       .then((data) => setHabits(data));
-  }, []);
+  }, [token]);
+  if (!token) {
+    return <AuthPage onLogin={handleLogin}></AuthPage>;
+  }
+
   return (
     <div className="app">
       <header className="app-header">

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ManagePage({ habits, setHabits }) {
+function ManagePage({ habits, setHabits, token }) {
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -24,7 +24,11 @@ function ManagePage({ habits, setHabits }) {
     if (name.trim() === "") return;
     fetch("http://localhost:3000/habits", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+
       body: JSON.stringify({
         name,
         days: selectedDays,

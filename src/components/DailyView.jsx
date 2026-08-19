@@ -1,7 +1,7 @@
 import { useState } from "react";
 import recalculateStreak from "./recalculateStreak";
 
-function DailyView({ habits, setHabits }) {
+function DailyView({ habits, setHabits, token }) {
   const today = new Date();
   const dayNames = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
   const todayName = dayNames[today.getDay()];
@@ -47,7 +47,10 @@ function DailyView({ habits, setHabits }) {
 
                 fetch(`http://localhost:3000/habits/${habit.id}`, {
                   method: "PUT",
-                  headers: { "Content-Type": "application/json" },
+                  headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                  },
                   body: JSON.stringify({
                     name: withStreak.name,
                     days: withStreak.days,

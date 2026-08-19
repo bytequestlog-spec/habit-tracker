@@ -1,7 +1,7 @@
 import { useState } from "react";
 import recalculateStreak from "./recalculateStreak";
 
-function MonthlyView({ habits, setHabits }) {
+function MonthlyView({ habits, setHabits, token }) {
   const today = new Date();
   const [viewMonth, setViewMonth] = useState(today.getMonth());
   const [viewYear, setViewYear] = useState(today.getFullYear());
@@ -103,7 +103,10 @@ function MonthlyView({ habits, setHabits }) {
                         );
                         fetch(`http://localhost:3000/habits/${habit.id}`, {
                           method: "PUT",
-                          headers: { "Content-Type": "application/json" },
+                          headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                          },
                           body: JSON.stringify({
                             name: withStreak.name,
                             days: withStreak.days,
