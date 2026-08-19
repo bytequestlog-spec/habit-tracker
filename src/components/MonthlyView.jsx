@@ -113,7 +113,7 @@ function MonthlyView({ habits, setHabits }) {
                             completed_dates: withStreak.completed_dates,
                           }),
                         })
-                          .then((res) => res.json)
+                          .then((res) => res.json())
                           .then((updatedHabit) => {
                             setHabits(
                               habits.map((h) =>

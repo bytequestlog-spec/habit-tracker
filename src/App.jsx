@@ -81,9 +81,7 @@ function App() {
               Yearly
             </button>
           </div>
-          {habits.length === 0 && (
-            <p>No habits yet! Add one in the manage page</p>
-          )}
+
           {currentView === "daily" && (
             <DailyView habits={habits} setHabits={setHabits} />
           )}
