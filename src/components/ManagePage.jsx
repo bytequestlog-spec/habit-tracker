@@ -127,7 +127,10 @@ function ManagePage({ habits, setHabits, token }) {
                       `http://localhost:3000/habits/${habits[editingIndex].id}`,
                       {
                         method: "PUT",
-                        headers: { "Content-Type": "application/json" },
+                        headers: {
+                          "Content-Type": "application/json",
+                          Authorization: `Bearer ${token}`,
+                        },
                         body: JSON.stringify({
                           name: editName,
                           days: editDays,
@@ -182,6 +185,7 @@ function ManagePage({ habits, setHabits, token }) {
                   onClick={() => {
                     fetch(`http://localhost:3000/habits/${habit.id}`, {
                       method: "DELETE",
+                      headers: { Authorization: `Bearer ${token}` },
                     }).then(() => {
                       setHabits(habits.filter((h) => h.id !== habit.id));
                     });

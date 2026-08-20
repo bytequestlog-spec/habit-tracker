@@ -36,7 +36,7 @@ function App() {
   useEffect(() => {
     if (!token) return;
     fetch("http://localhost:3000/habits", {
-      headers: { Authorization: "Bearer ${token}" },
+      headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
       .then((data) => setHabits(data));
@@ -51,6 +51,15 @@ function App() {
         <h1 className="app-title">🌱 Habit Tracker</h1>
         <button onClick={() => setDarkMode(!darkMode)} className="theme-toggle">
           {darkMode ? "☀️" : "🌙"}
+        </button>
+        <button
+          onClick={() => {
+            localStorage.removeItem("token");
+            setToken(null);
+          }}
+          className="theme-toggle"
+        >
+          Logout
         </button>
       </header>
       <div
@@ -97,15 +106,15 @@ function App() {
           </div>
 
           {currentView === "daily" && (
-            <DailyView habits={habits} setHabits={setHabits} />
+            <DailyView habits={habits} setHabits={setHabits} token={token} />
           )}
           {currentView === "monthly" && (
-            <MonthlyView habits={habits} setHabits={setHabits} />
+            <MonthlyView habits={habits} setHabits={setHabits} token={token} />
           )}
           {currentView === "yearly" && <YearlyView habits={habits} />}
         </div>
         <div className="page manage-page">
-          <ManagePage habits={habits} setHabits={setHabits} />
+          <ManagePage habits={habits} setHabits={setHabits} token={token} />
         </div>
       </div>
       <BottomNav
