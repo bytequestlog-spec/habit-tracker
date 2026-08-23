@@ -4,13 +4,14 @@ import ManagePage from "./components/ManagePage";
 import DailyView from "./components/DailyView";
 import MonthlyView from "./components/MonthlyView";
 import YearlyView from "./components/YearlyView";
+import AuthPage from "./components/AuthPage";
 import "./styles/App.css";
 import "./styles/BottomNav.css";
 import "./styles/DailyView.css";
 import "./styles/ManagePage.css";
 import "./styles/MonthlyView.css";
 import "./styles/YearlyView.css";
-import AuthPage from "./components/AuthPage";
+import "./styles/Auth.css";
 
 function App() {
   const [habits, setHabits] = useState([]);

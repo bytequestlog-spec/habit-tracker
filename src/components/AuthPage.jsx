@@ -1,4 +1,7 @@
 import { useState } from "react";
+import "../styles/Auth.css";
+import "../styles/ManagePage.css";
+import "../styles/global.css";
 
 function AuthPage({ onLogin }) {
   const [isLogin, setIsLogin] = useState(true);
@@ -27,39 +30,41 @@ function AuthPage({ onLogin }) {
       });
   }
   return (
-    <div className="auth-container">
-      <h1 className="app-title">🌱 Habit Tracker</h1>
-      <div className="auth-form">
-        <h2>{isLogin ? "Welcome back" : "Create account"}</h2>
-        {error && <p className="auth-error">{error}</p>}
-        <input
-          className="form-inputs"
-          placeholder="Email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        ></input>
+    <div className="app">
+      <div className="auth-container">
+        <h1 className="app-title">🌱 Habit Tracker</h1>
+        <div className="auth-form">
+          <h2>{isLogin ? "Welcome back" : "Create account"}</h2>
+          {error && <p className="auth-error">{error}</p>}
+          <input
+            className="form-inputs"
+            placeholder="Email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          ></input>
 
-        <input
-          className="form-inputs"
-          placeholder="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        ></input>
+          <input
+            className="form-inputs"
+            placeholder="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          ></input>
 
-        <button className="add-btn" onClick={handleSubmit}>
-          {isLogin ? "Login" : "Sign Up"}
-        </button>
-        <p className="auth-switch">
-          {isLogin ? "Dont't have an account?" : "Already have an account?"}
-          <button
-            className="auth-switch-btn"
-            onClick={() => setIsLogin(!isLogin)}
-          >
-            {isLogin ? "Sign Up" : "Login"}
+          <button className="add-btn" onClick={handleSubmit}>
+            {isLogin ? "Login" : "Sign Up"}
           </button>
-        </p>
+          <p className="auth-switch">
+            {isLogin ? "Dont't have an account?" : "Already have an account?"}
+            <button
+              className="auth-switch-btn"
+              onClick={() => setIsLogin(!isLogin)}
+            >
+              {isLogin ? "Sign Up" : "Login"}
+            </button>
+          </p>
+        </div>
       </div>
     </div>
   );
