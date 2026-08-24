@@ -22,7 +22,7 @@ function ManagePage({ habits, setHabits, token }) {
 
   function addHabit() {
     if (name.trim() === "") return;
-    fetch("http://localhost:3000/habits", {
+    fetch("https://habit-tracker-api-production-2d78.up.railway.app/habits", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -124,7 +124,7 @@ function ManagePage({ habits, setHabits, token }) {
                   className="save-btn"
                   onClick={() => {
                     fetch(
-                      `http://localhost:3000/habits/${habits[editingIndex].id}`,
+                      `https://habit-tracker-api-production-2d78.up.railway.app/habits/${habits[editingIndex].id}`,
                       {
                         method: "PUT",
                         headers: {
@@ -183,10 +183,13 @@ function ManagePage({ habits, setHabits, token }) {
                 <button
                   type="button"
                   onClick={() => {
-                    fetch(`http://localhost:3000/habits/${habit.id}`, {
-                      method: "DELETE",
-                      headers: { Authorization: `Bearer ${token}` },
-                    }).then(() => {
+                    fetch(
+                      `https://habit-tracker-api-production-2d78.up.railway.app/habits/${habit.id}`,
+                      {
+                        method: "DELETE",
+                        headers: { Authorization: `Bearer ${token}` },
+                      },
+                    ).then(() => {
                       setHabits(habits.filter((h) => h.id !== habit.id));
                     });
                   }}

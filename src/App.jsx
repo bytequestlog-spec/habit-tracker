@@ -36,7 +36,7 @@ function App() {
 
   useEffect(() => {
     if (!token) return;
-    fetch("http://localhost:3000/habits", {
+    fetch("https://habit-tracker-api-production-2d78.up.railway.app/habits", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())

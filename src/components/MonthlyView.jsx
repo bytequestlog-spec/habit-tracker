@@ -101,21 +101,24 @@ function MonthlyView({ habits, setHabits, token }) {
                         const updatedHabits = habits.map((h) =>
                           h === habit ? withStreak : h,
                         );
-                        fetch(`http://localhost:3000/habits/${habit.id}`, {
-                          method: "PUT",
-                          headers: {
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${token}`,
+                        fetch(
+                          `https://habit-tracker-api-production-2d78.up.railway.app/habits/${habit.id}`,
+                          {
+                            method: "PUT",
+                            headers: {
+                              "Content-Type": "application/json",
+                              Authorization: `Bearer ${token}`,
+                            },
+                            body: JSON.stringify({
+                              name: withStreak.name,
+                              days: withStreak.days,
+                              start_date: withStreak.start_date,
+                              end_date: withStreak.end_date,
+                              streak: withStreak.streak,
+                              completed_dates: withStreak.completed_dates,
+                            }),
                           },
-                          body: JSON.stringify({
-                            name: withStreak.name,
-                            days: withStreak.days,
-                            start_date: withStreak.start_date,
-                            end_date: withStreak.end_date,
-                            streak: withStreak.streak,
-                            completed_dates: withStreak.completed_dates,
-                          }),
-                        })
+                        )
                           .then((res) => res.json())
                           .then((updatedHabit) => {
                             setHabits(

@@ -11,8 +11,8 @@ function AuthPage({ onLogin }) {
 
   function handleSubmit() {
     const url = isLogin
-      ? "http://localhost:3000/login"
-      : "http://localhost:3000/signup";
+      ? "https://habit-tracker-api-production-2d78.up.railway.app/login"
+      : "https://habit-tracker-api-production-2d78.up.railway.app/signup";
 
     fetch(url, {
       method: "POST",
