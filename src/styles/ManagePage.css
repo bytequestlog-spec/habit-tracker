@@ -231,3 +231,21 @@
   background-color: var(--border);
   border-radius: 4px;
 }
+
+.logout-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 20px;
+  background-color: var(--bg-tertiary);
+  color: var(--danger);
+  border: 1px solid var(--danger);
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.logout-btn:hover {
+  background-color: var(--danger);
+  color: var(--text-primary);
+}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ManagePage({ habits, setHabits, token }) {
+function ManagePage({ habits, setHabits, token, onLogout }) {
   const [name, setName] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
@@ -269,6 +269,9 @@ function ManagePage({ habits, setHabits, token }) {
 
         <button type="button" onClick={addHabit} className="add-btn">
           Add Habit
+        </button>
+        <button className="logout-btn" onClick={onLogout}>
+          Log Out
         </button>
       </div>
     </div>

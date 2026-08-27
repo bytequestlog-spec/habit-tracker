@@ -53,21 +53,16 @@ function App() {
         <button onClick={() => setDarkMode(!darkMode)} className="theme-toggle">
           {darkMode ? "☀️" : "🌙"}
         </button>
-        <button
-          onClick={() => {
-            localStorage.removeItem("token");
-            setToken(null);
-          }}
-          className="theme-toggle"
-        >
-          Logout
-        </button>
       </header>
       <div
         className={`pages-container ${currentPage === "manage" ? "on-manage" : ""}`}
         onTouchStart={(e) => (touchStartX.current = e.touches[0].clientX)}
         onTouchEnd={(e) => {
           const diff = touchStartX.current - e.changedTouches[0].clientX;
+          const diffY = Math.abs(
+            e.changedTouches[0].clientY - e.touches[0]?.clientY || 0,
+          );
+          if (Math.abs(diff) < 50) return;
           if (diff > 50) setCurrentPage("manage");
           if (diff < -50) setCurrentPage("home");
         }}
@@ -115,7 +110,15 @@ function App() {
           {currentView === "yearly" && <YearlyView habits={habits} />}
         </div>
         <div className="page manage-page">
-          <ManagePage habits={habits} setHabits={setHabits} token={token} />
+          <ManagePage
+            habits={habits}
+            setHabits={setHabits}
+            token={token}
+            onLogout={() => {
+              localStorage.removeItem("token");
+              setToken(null);
+            }}
+          />
         </div>
       </div>
       <BottomNav
