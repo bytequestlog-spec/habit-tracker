@@ -46,7 +46,7 @@ function AuthPage({ onLogin }) {
 
           <input
             className="form-inputs"
-            placeholder="password"
+            placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -56,7 +56,7 @@ function AuthPage({ onLogin }) {
             {isLogin ? "Login" : "Sign Up"}
           </button>
           <p className="auth-switch">
-            {isLogin ? "Dont't have an account?" : "Already have an account?"}
+            {isLogin ? "Don't have an account?" : "Already have an account?"}
             <button
               className="auth-switch-btn"
               onClick={() => setIsLogin(!isLogin)}
