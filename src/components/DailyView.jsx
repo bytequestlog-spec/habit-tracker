@@ -65,7 +65,7 @@ function DailyView({ habits, setHabits, token }) {
                 )
                   .then((res) => res.json())
                   .then((updatedHabit) => {
-                    setHabits(
+                    setHabits((habits) =>
                       habits.map((h) =>
                         h.id === updatedHabit.id ? updatedHabit : h,
                       ),

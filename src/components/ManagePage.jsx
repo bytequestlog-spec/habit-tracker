@@ -143,7 +143,7 @@ function ManagePage({ habits, setHabits, token, onLogout }) {
                     )
                       .then((res) => res.json())
                       .then((updatedHabit) => {
-                        setHabits(
+                        setHabits((habits) =>
                           habits.map((h) =>
                             h.id === updatedHabit.id ? updatedHabit : h,
                           ),
@@ -190,7 +190,9 @@ function ManagePage({ habits, setHabits, token, onLogout }) {
                         headers: { Authorization: `Bearer ${token}` },
                       },
                     ).then(() => {
-                      setHabits(habits.filter((h) => h.id !== habit.id));
+                      setHabits((habits) =>
+                        habits.filter((h) => h.id !== habit.id),
+                      );
                     });
                   }}
                   className="remove-btn"
