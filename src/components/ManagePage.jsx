@@ -22,7 +22,7 @@ function ManagePage({ habits, setHabits, token, onLogout }) {
 
   function addHabit() {
     if (name.trim() === "") return;
-    fetch("https://habit-tracker-api-production-2d78.up.railway.app/habits", {
+    fetch("https://habit-tracker-api-tan.vercel.app/habits", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -124,7 +124,7 @@ function ManagePage({ habits, setHabits, token, onLogout }) {
                   className="save-btn"
                   onClick={() => {
                     fetch(
-                      `https://habit-tracker-api-production-2d78.up.railway.app/habits/${habits[editingIndex].id}`,
+                      `https://habit-tracker-api-tan.vercel.app/habits/${habits[editingIndex].id}`,
                       {
                         method: "PUT",
                         headers: {
@@ -184,7 +184,7 @@ function ManagePage({ habits, setHabits, token, onLogout }) {
                   type="button"
                   onClick={() => {
                     fetch(
-                      `https://habit-tracker-api-production-2d78.up.railway.app/habits/${habit.id}`,
+                      `https://habit-tracker-api-tan.vercel.app/habits/${habit.id}`,
                       {
                         method: "DELETE",
                         headers: { Authorization: `Bearer ${token}` },

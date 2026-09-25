@@ -11,8 +11,8 @@ function AuthPage({ onLogin }) {
 
   function handleSubmit() {
     const url = isLogin
-      ? "https://habit-tracker-api-production-2d78.up.railway.app/login"
-      : "https://habit-tracker-api-production-2d78.up.railway.app/signup";
+      ? "https://habit-tracker-api-tan.vercel.app/login"
+      : "https://habit-tracker-api-tan.vercel.app/signup";
 
     fetch(url, {
       method: "POST",

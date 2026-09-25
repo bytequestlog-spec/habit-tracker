@@ -36,7 +36,7 @@ function App() {
 
   useEffect(() => {
     if (!token) return;
-    fetch("https://habit-tracker-api-production-2d78.up.railway.app/habits", {
+    fetch("https://habit-tracker-api-tan.vercel.app/habits", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
