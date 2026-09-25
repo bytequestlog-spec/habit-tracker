@@ -102,7 +102,7 @@ function MonthlyView({ habits, setHabits, token }) {
                           h === habit ? withStreak : h,
                         );
                         fetch(
-                          `https://habit-tracker-api-production-2d78.up.railway.app/habits/${habit.id}`,
+                          `https://habit-tracker-api-tan.vercel.app/habits/${habit.id}`,
                           {
                             method: "PUT",
                             headers: {
